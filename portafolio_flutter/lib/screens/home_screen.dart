@@ -15,7 +15,10 @@ class HomeScreen extends StatelessWidget {
             ),
             CardProyect(),
             const Center(
-              child: Text('Bienvenido a mi portafolio'),
+              child: Text(
+                'Bienvenido a mi portafolio',
+                style: TextStyle(fontSize: 20, fontFamily: "Franklin"),
+              ),
             ),
           ],
         ),

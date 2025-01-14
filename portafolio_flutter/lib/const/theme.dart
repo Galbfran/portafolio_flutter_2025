@@ -13,8 +13,9 @@ final ThemeData theme = ThemeData(
     onSurface: Colors.black,
     error: Colors.red,
     onError: Colors.white,
-    surface: Colors.black,
+    surface: Colors.white,
   ),
+  fontFamily: 'Franklin',
   typography: Typography.material2021(),
   useMaterial3: true,
 );
