@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:portafolio_flutter/provider/app_bar_provider.dart';
 import 'package:portafolio_flutter/widgets/app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,21 +15,32 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class PageCarrousel extends StatefulWidget {
-  const PageCarrousel({
-    super.key,
-  });
-
+class PageCarrousel extends HookConsumerWidget {
+  const PageCarrousel({super.key});
   @override
-  State<PageCarrousel> createState() => _PageCarrouselState();
-}
-
-class _PageCarrouselState extends State<PageCarrousel> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final PageController controller = PageController(initialPage: 0);
     final width = MediaQuery.sizeOf(context).width;
     final height = MediaQuery.of(context).size.height - 50;
+
+    controller.addListener(() {
+      if (controller.page == 0) {
+        ref.read(appBarProvider.notifier).state = AppBarScroll(0, 0.4);
+      }
+      if (controller.page == 1) {
+        ref.read(appBarProvider.notifier).state = AppBarScroll(0.2, 0.4);
+      }
+      if (controller.page == 2) {
+        ref.read(appBarProvider.notifier).state = AppBarScroll(0.4, 0.6);
+      }
+      if (controller.page == 3) {
+        ref.read(appBarProvider.notifier).state = AppBarScroll(0.6, 0.8);
+      }
+      if (controller.page == 4) {
+        ref.read(appBarProvider.notifier).state = AppBarScroll(0.8, 0.9);
+      }
+    });
+
     final List<Widget> pages = [
       GestureDetector(
         onTap: () => controller.animateToPage(1,
