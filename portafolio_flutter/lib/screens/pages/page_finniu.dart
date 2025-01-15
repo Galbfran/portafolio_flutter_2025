@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio_flutter/screens/pages/page_init.dart';
 
 class PageFinniu extends StatelessWidget {
   const PageFinniu({
@@ -12,6 +13,24 @@ class PageFinniu extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: width > 600
+            ? Row(
+                spacing: 10,
+                children: [
+                  SectionTitle(),
+                  SectionSubtitle(),
+                ],
+              )
+            : Column(
+                spacing: 10,
+                children: [
+                  SectionTitle(),
+                  SectionSubtitle(),
+                ],
+              ),
+      ),
     );
   }
 }
