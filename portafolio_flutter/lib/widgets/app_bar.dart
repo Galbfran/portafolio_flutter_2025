@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:portafolio_flutter/const/laucher_url.dart';
 import 'package:portafolio_flutter/const/theme.dart';
 import 'package:portafolio_flutter/provider/app_bar_provider.dart';
@@ -17,21 +15,13 @@ class AppBarHome extends ConsumerWidget implements PreferredSizeWidget {
       IconButton(
         onPressed: () {
           launchURL('https://www.linkedin.com/in/franco-galbiati', context);
-          // kIsWeb
-          //     ? launchURL(
-          //         'https://www.linkedin.com/in/franco-galbiati/', context)
-          //     : context.go(
-          //         '/web_view?url=https://www.linkedin.com/in/franco-galbiati/');
         },
         icon: const FaIcon(FontAwesomeIcons.linkedin),
       ),
       const SizedBox(width: 10),
       IconButton(
         onPressed: () {
-          kIsWeb
-              ? launchURL('https://github.com/Galbfran/', context)
-              : context.go(
-                  '/web_view?url=https://github.com/Galbfran/&title=Github');
+          launchURL('https://github.com/Galbfran/', context);
         },
         icon: const FaIcon(FontAwesomeIcons.github),
       ),

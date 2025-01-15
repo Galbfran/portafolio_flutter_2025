@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 const Color primaryColor = Color(0xffDBE285);
 const Color secundaryColor = Color(0xff61A375);
+const Color buttonColor = Color.fromARGB(255, 173, 180, 107);
+const Color fourColor = Color(0xff61A375);
 
 final ThemeData theme = ThemeData(
   colorScheme: ColorScheme(
