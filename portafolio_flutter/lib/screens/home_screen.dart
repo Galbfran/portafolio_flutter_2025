@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:portafolio_flutter/provider/app_bar_provider.dart';
 import 'package:portafolio_flutter/widgets/app_bar.dart';
+import 'package:portafolio_flutter/widgets/drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerApp(),
       appBar: AppBarHome(),
       body: PageCarrousel(),
     );
@@ -35,9 +37,6 @@ class PageCarrousel extends HookConsumerWidget {
       }
       if (controller.page == 3) {
         ref.read(appBarProvider.notifier).state = AppBarScroll(0.6, 0.8);
-      }
-      if (controller.page == 4) {
-        ref.read(appBarProvider.notifier).state = AppBarScroll(0.8, 0.9);
       }
     });
 

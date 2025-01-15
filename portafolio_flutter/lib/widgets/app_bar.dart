@@ -1,33 +1,42 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:portafolio_flutter/const/laucher_url.dart';
 import 'package:portafolio_flutter/const/theme.dart';
 import 'package:portafolio_flutter/provider/app_bar_provider.dart';
-
-List<Widget> actions = [
-  IconButton(
-    onPressed: () {},
-    icon: const FaIcon(FontAwesomeIcons.envelope),
-  ),
-  const SizedBox(width: 10),
-  IconButton(
-    onPressed: () {},
-    icon: const FaIcon(FontAwesomeIcons.linkedin),
-  ),
-  const SizedBox(width: 10),
-  IconButton(
-    onPressed: () {},
-    icon: const FaIcon(FontAwesomeIcons.github),
-  ),
-  const SizedBox(width: 10),
-];
 
 class AppBarHome extends ConsumerWidget implements PreferredSizeWidget {
   const AppBarHome({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    List<Widget> actionsMovil = [
+      IconButton(
+        onPressed: () {
+          launchURL('https://www.linkedin.com/in/franco-galbiati', context);
+          // kIsWeb
+          //     ? launchURL(
+          //         'https://www.linkedin.com/in/franco-galbiati/', context)
+          //     : context.go(
+          //         '/web_view?url=https://www.linkedin.com/in/franco-galbiati/');
+        },
+        icon: const FaIcon(FontAwesomeIcons.linkedin),
+      ),
+      const SizedBox(width: 10),
+      IconButton(
+        onPressed: () {
+          kIsWeb
+              ? launchURL('https://github.com/Galbfran/', context)
+              : context.go(
+                  '/web_view?url=https://github.com/Galbfran/&title=Github');
+        },
+        icon: const FaIcon(FontAwesomeIcons.github),
+      ),
+      const SizedBox(width: 10),
+    ];
     final appBarScroll = ref.watch(appBarProvider);
     const List<Color> colors = [primaryColor, secundaryColor];
 
@@ -44,7 +53,18 @@ class AppBarHome extends ConsumerWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-      actions: actions,
+      actions: actionsMovil,
+      leading: GestureDetector(
+        onTap: () => Scaffold.of(context).openDrawer(),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: SvgPicture.asset(
+            'assets/svg/logo_fran_svg.svg',
+            width: 25,
+            height: 25,
+          ),
+        ),
+      ),
     );
   }
 
@@ -61,11 +81,6 @@ class Title extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(
-          'assets/svg/logo_fran_svg.svg',
-          width: 30,
-          height: 30,
-        ),
         SizedBox(width: 10),
         const Text(
           'Franco Galbiati',
