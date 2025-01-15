@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:portafolio_flutter/provider/app_bar_provider.dart';
+import 'package:portafolio_flutter/screens/pages/page_about.dart';
+import 'package:portafolio_flutter/screens/pages/page_finniu.dart';
+import 'package:portafolio_flutter/screens/pages/page_init.dart';
+import 'package:portafolio_flutter/screens/pages/page_silver.dart';
 import 'package:portafolio_flutter/widgets/app_bar.dart';
 import 'package:portafolio_flutter/widgets/drawer.dart';
 
@@ -40,47 +44,11 @@ class PageCarrousel extends HookConsumerWidget {
       }
     });
 
-    final List<Widget> pages = [
-      GestureDetector(
-        onTap: () => controller.animateToPage(1,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut),
-        child: Container(
-          width: width,
-          height: height,
-          color: Colors.amber,
-        ),
-      ),
-      GestureDetector(
-        onTap: () => controller.animateToPage(2,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut),
-        child: Container(
-          width: width,
-          height: height,
-          color: Colors.red,
-        ),
-      ),
-      GestureDetector(
-        onTap: () => controller.animateToPage(3,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut),
-        child: Container(
-          width: width,
-          height: height,
-          color: Colors.blue,
-        ),
-      ),
-      GestureDetector(
-        onTap: () => controller.animateToPage(4,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut),
-        child: Container(
-          width: width,
-          height: height,
-          color: Colors.green,
-        ),
-      ),
+    const List<Widget> pages = [
+      PageInit(),
+      PageAbout(),
+      PageFinniu(),
+      PageSilver(),
     ];
     return SizedBox(
       width: width,
