@@ -36,7 +36,7 @@ class PageInit extends StatelessWidget {
                   text:
                       "Creando soluciones digitales elegantes y funcionales con pasión por el detalle y la experiencia del usuario.",
                 ),
-                CarrouselTec()
+                CarrouselTecInit()
               ],
             ),
           ),

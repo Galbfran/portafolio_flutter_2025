@@ -5,8 +5,10 @@ class TextAnimated extends StatelessWidget {
   const TextAnimated({
     super.key,
     required this.text,
+    this.textAlign = TextAlign.center,
   });
   final String text;
+  final TextAlign textAlign;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
@@ -23,7 +25,7 @@ class TextAnimated extends StatelessWidget {
         animatedTexts: [
           TypewriterAnimatedText(
             text,
-            textAlign: TextAlign.center,
+            textAlign: textAlign,
           ),
         ],
       ),
@@ -35,8 +37,10 @@ class SubTitleAnimated extends StatelessWidget {
   const SubTitleAnimated({
     super.key,
     required this.text,
+    this.textAlign = TextAlign.center,
   });
   final String text;
+  final TextAlign textAlign;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
@@ -54,6 +58,7 @@ class SubTitleAnimated extends StatelessWidget {
           TypewriterAnimatedText(
             text,
             textStyle: TextStyle(color: Colors.black),
+            textAlign: textAlign,
           ),
         ],
       ),
@@ -65,8 +70,10 @@ class TitleAnimated extends StatelessWidget {
   const TitleAnimated({
     super.key,
     required this.text,
+    this.textAlign = TextAlign.center,
   });
   final String text;
+  final TextAlign textAlign;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
@@ -83,7 +90,10 @@ class TitleAnimated extends StatelessWidget {
         animatedTexts: [
           TypewriterAnimatedText(
             text,
-            textStyle: TextStyle(color: Colors.black),
+            textStyle: TextStyle(
+              color: Colors.black,
+            ),
+            textAlign: textAlign,
           ),
         ],
       ),

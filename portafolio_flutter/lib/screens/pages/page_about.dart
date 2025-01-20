@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio_flutter/const/theme.dart';
+import 'package:portafolio_flutter/widgets/carrousel_tec.dart';
+import 'package:portafolio_flutter/widgets/text_animated.dart';
 
 class PageAbout extends StatelessWidget {
   const PageAbout({
@@ -9,32 +11,28 @@ class PageAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
-    final height = MediaQuery.of(context).size.height;
+
     return SizedBox(
       width: width,
-      height: height,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: width > 600
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 10,
-                children: [
-                  FirstSection(),
-                  SecondSection(),
-                ],
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 10,
-                children: [
-                  FirstSection(),
-                  SecondSection(),
-                ],
-              ),
-      ),
+      child: width > 600
+          ? Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 10,
+              children: [
+                FirstSection(),
+                SecondSection(),
+              ],
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 10,
+              children: [
+                FirstSection(),
+                SecondSection(),
+              ],
+            ),
     );
   }
 }
@@ -46,14 +44,33 @@ class FirstSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const String text = '''Soy Franco Galbiati, de Argentina Buenos Aires.''';
+    const String textExperience =
+        """Apasionado desarrollador con experiencia en la creación de aplicaciones móviles y web utilizando tecnologías modernas como Flutter, Node.js, Express, Sequelize y PostgreSQL. Destaco mi capacidad para utilizar Flutter en el desarrollo móvil, así como la implementación de bibliotecas como Auth0 para la gestiónde autenticación y las APIs de Google Maps, entre otras.""";
     return SectionWidget(
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Text("about"),
-          ],
-        ),
+      child: Column(
+        spacing: 5,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SubTitleAnimated(
+            text: "Acerca de mi:",
+            textAlign: TextAlign.start,
+          ),
+          TextAnimated(
+            text: text,
+            textAlign: TextAlign.start,
+          ),
+          TextAnimated(
+            text: textExperience,
+            textAlign: TextAlign.start,
+          ),
+          SubTitleAnimated(
+            text: "Tecnologias",
+            textAlign: TextAlign.start,
+          ),
+          Center(child: CarrouselTecAbout())
+        ],
       ),
     );
   }
@@ -81,12 +98,11 @@ class SectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
-    final height = MediaQuery.of(context).size.height - 100;
     return Container(
       width: width > 600 ? width * 0.45 : width,
-      height: width > 600 ? height : height * 0.45,
+      height: 450,
       margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(5),
+      padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: primaryColor,
         boxShadow: const [

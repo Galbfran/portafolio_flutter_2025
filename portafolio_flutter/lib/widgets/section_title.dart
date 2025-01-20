@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:portafolio_flutter/widgets/carrousel_tec.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
@@ -42,7 +41,6 @@ class SectionTitle extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  CarouselTecnologi(),
                   SizedBox(height: 10),
                   Expanded(
                     child: Container(

@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portafolio_flutter/const/theme.dart';
 
-class CarrouselTec extends StatelessWidget {
-  const CarrouselTec({
+class CarrouselTecInit extends StatelessWidget {
+  const CarrouselTecInit({
     super.key,
   });
 
@@ -120,71 +122,114 @@ class TectItem extends StatelessWidget {
   }
 }
 
-class CarouselTecnologi extends StatelessWidget {
-  const CarouselTecnologi({
-    super.key,
-  });
+class CarrouselTecAbout extends StatefulWidget {
+  const CarrouselTecAbout({super.key});
+
+  @override
+  State<CarrouselTecAbout> createState() => _CarrouselTecAboutState();
+}
+
+class _CarrouselTecAboutState extends State<CarrouselTecAbout> {
+  late PageController _controller;
+  late Timer _timer;
+  final int _interval = 2; // Tiempo en segundos
+  final List<Widget> listWidget = [
+    TectItemAbout(name: 'Dart', svg: 'assets/svg/dart.svg'),
+    TectItemAbout(name: 'Flutter', svg: 'assets/svg/flutter.svg'),
+    TectItemAbout(name: 'TypeScript', svg: 'assets/svg/typescript.svg'),
+    TectItemAbout(name: 'React', svg: 'assets/svg/react.svg'),
+    TectItemAbout(name: 'Node.js', svg: 'assets/svg/nodejs.svg'),
+    TectItemAbout(name: 'GitHub', svg: 'assets/svg/github-light.svg'),
+    TectItemAbout(name: 'Auth0', svg: 'assets/svg/auth0.svg'),
+    TectItemAbout(name: 'JWT', svg: 'assets/svg/jwt.svg'),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController(viewportFraction: 0.25, initialPage: 500);
+
+    _timer = Timer.periodic(Duration(seconds: _interval), (timer) {
+      if (_controller.hasClients) {
+        _controller.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        width: double.infinity,
+        width: MediaQuery.sizeOf(context).width,
         height: 100,
-        child: CarouselSlider(
-          items: [
-            ItemCarrousel(
-              name: 'react',
-              icon: Icon(Icons.android),
-            ),
-            ItemCarrousel(
-              name: 'react',
-              icon: Icon(Icons.android),
-            ),
-            ItemCarrousel(
-              name: 'react',
-              icon: Icon(Icons.android),
-            )
-          ],
-          options: CarouselOptions(
-            autoPlay: true,
-            enlargeCenterPage: false,
-            viewportFraction: 0.2,
-            clipBehavior: Clip.none,
-          ),
+        child: PageView.builder(
+          controller: _controller,
+          scrollDirection: Axis.horizontal,
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, index) {
+            final realIndex = index % listWidget.length;
+            return listWidget[realIndex];
+          },
         ),
       ),
     );
   }
 }
 
-class ItemCarrousel extends StatelessWidget {
-  const ItemCarrousel({
+class TectItemAbout extends StatelessWidget {
+  const TectItemAbout({
     super.key,
     required this.name,
-    required this.icon,
+    required this.svg,
   });
+
   final String name;
-  final Icon icon;
+  final String svg;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 10),
+      padding: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(5),
       width: 100,
-      height: 50,
+      height: 150,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(10),
+        color: primaryColor,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 5,
+            offset: Offset(0, 5),
+          )
+        ],
+        border: Border.all(color: secundaryColor),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.circle,
-            size: 50,
+          SvgPicture.asset(svg, width: 40, height: 40),
+          const SizedBox(height: 5),
+          Text(
+            name,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          Text(name)
         ],
       ),
     );
