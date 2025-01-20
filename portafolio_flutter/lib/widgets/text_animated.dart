@@ -59,6 +59,7 @@ class SubTitleAnimated extends StatelessWidget {
             text,
             textStyle: TextStyle(color: Colors.black),
             textAlign: textAlign,
+            speed: const Duration(milliseconds: 100),
           ),
         ],
       ),

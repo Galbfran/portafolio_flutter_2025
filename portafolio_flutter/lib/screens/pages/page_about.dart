@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio_flutter/const/theme.dart';
 import 'package:portafolio_flutter/widgets/carrousel_tec.dart';
+import 'package:portafolio_flutter/widgets/page_exp.dart';
 import 'package:portafolio_flutter/widgets/text_animated.dart';
 
 class PageAbout extends StatelessWidget {
@@ -44,12 +45,12 @@ class FirstSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String text = '''Soy Franco Galbiati, de Argentina Buenos Aires.''';
-    const String textExperience =
-        """Apasionado desarrollador con experiencia en la creación de aplicaciones móviles y web utilizando tecnologías modernas como Flutter, Node.js, Express, Sequelize y PostgreSQL. Destaco mi capacidad para utilizar Flutter en el desarrollo móvil, así como la implementación de bibliotecas como Auth0 para la gestiónde autenticación y las APIs de Google Maps, entre otras.""";
+    const String text =
+        '''Como desarrollador Full Stack, combino creatividad y experiencia técnica para construir aplicaciones web modernas y escalables. Mi enfoque se centra en crear soluciones que no solo funcionen perfectamente, sino que también ofrezcan una experiencia de usuario excepcional.\nDestaco mi capacidad para utilizar Flutter en el desarrollo móvil, así como la implementación de bibliotecas como Auth0 para la gestiónde autenticación y las APIs de Google Maps, entre otras.''';
+
     return SectionWidget(
       child: Column(
-        spacing: 5,
+        spacing: 10,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -61,15 +62,13 @@ class FirstSection extends StatelessWidget {
             text: text,
             textAlign: TextAlign.start,
           ),
-          TextAnimated(
-            text: textExperience,
-            textAlign: TextAlign.start,
-          ),
           SubTitleAnimated(
             text: "Tecnologias",
             textAlign: TextAlign.start,
           ),
-          Center(child: CarrouselTecAbout())
+          Center(
+            child: CarrouselTecAbout(),
+          )
         ],
       ),
     );
@@ -84,7 +83,18 @@ class SecondSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionWidget(
-      child: Text("about"),
+      child: Column(
+        spacing: 10,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SubTitleAnimated(
+            text: "Experiencias Laborales",
+            textAlign: TextAlign.start,
+          ),
+          PageExp(),
+        ],
+      ),
     );
   }
 }
@@ -99,8 +109,9 @@ class SectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
     return Container(
+      constraints: const BoxConstraints(minHeight: 450),
       width: width > 600 ? width * 0.45 : width,
-      height: 450,
+      height: width > 600 ? 600 : 0,
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
