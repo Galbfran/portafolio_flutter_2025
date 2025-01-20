@@ -11,7 +11,7 @@ final ThemeData theme = ThemeData(
     primary: primaryColor,
     secondary: secundaryColor,
     brightness: Brightness.light,
-    onPrimary: Colors.white,
+    onPrimary: Colors.black,
     onSecondary: Colors.white,
     onSurface: Colors.black,
     error: Colors.red,
