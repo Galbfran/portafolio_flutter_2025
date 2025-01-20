@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portafolio_flutter/const/theme.dart';
 import 'package:portafolio_flutter/widgets/carrousel_tec.dart';
 import 'package:portafolio_flutter/widgets/page_exp.dart';
+import 'package:portafolio_flutter/widgets/section_container.dart';
 import 'package:portafolio_flutter/widgets/text_animated.dart';
 
 class PageAbout extends StatelessWidget {
@@ -21,8 +21,8 @@ class PageAbout extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 10,
               children: [
-                FirstSection(),
-                SecondSection(),
+                _FirstSection(),
+                _SecondSection(),
               ],
             )
           : Column(
@@ -30,16 +30,17 @@ class PageAbout extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 10,
               children: [
-                FirstSection(),
-                SecondSection(),
+                _FirstSection(),
+                _SecondSection(),
               ],
             ),
     );
   }
 }
 
-class FirstSection extends StatelessWidget {
-  const FirstSection({
+class _FirstSection extends StatelessWidget {
+  const _FirstSection({
+    // ignore: unused_element
     super.key,
   });
 
@@ -75,8 +76,9 @@ class FirstSection extends StatelessWidget {
   }
 }
 
-class SecondSection extends StatelessWidget {
-  const SecondSection({
+class _SecondSection extends StatelessWidget {
+  const _SecondSection({
+    // ignore: unused_element
     super.key,
   });
 
@@ -95,38 +97,6 @@ class SecondSection extends StatelessWidget {
           PageExp(),
         ],
       ),
-    );
-  }
-}
-
-class SectionWidget extends StatelessWidget {
-  const SectionWidget({
-    super.key,
-    required this.child,
-  });
-  final Widget child;
-  @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.sizeOf(context).width;
-    return Container(
-      constraints: const BoxConstraints(minHeight: 450),
-      width: width > 600 ? width * 0.45 : width,
-      height: width > 600 ? 600 : 0,
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: primaryColor,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 5,
-            offset: Offset(0, 5),
-          )
-        ],
-        border: Border.all(color: secundaryColor),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: child,
     );
   }
 }
