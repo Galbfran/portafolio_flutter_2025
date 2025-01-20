@@ -1,8 +1,6 @@
 import 'dart:ui';
-
-import 'package:carousel_slider/carousel_options.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:portafolio_flutter/widgets/carrousel_tec.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
@@ -114,77 +112,6 @@ class SectionTitle extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CarouselTecnologi extends StatelessWidget {
-  const CarouselTecnologi({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: double.infinity,
-        height: 100,
-        child: CarouselSlider(
-          items: [
-            // Puedes poner cualquier widget aquí
-            ItemCarrousel(
-              name: 'react',
-              icon: Icon(Icons.android),
-            ),
-            ItemCarrousel(
-              name: 'react',
-              icon: Icon(Icons.android),
-            ),
-            ItemCarrousel(
-              name: 'react',
-              icon: Icon(Icons.android),
-            )
-          ],
-          options: CarouselOptions(
-            autoPlay: true,
-            enlargeCenterPage: false,
-            viewportFraction: 0.2,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ItemCarrousel extends StatelessWidget {
-  const ItemCarrousel({
-    super.key,
-    required this.name,
-    required this.icon,
-  });
-  final String name;
-  final Icon icon;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 10),
-      width: 100,
-      height: 50,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.circle,
-            size: 50,
-          ),
-          Text(name)
-        ],
       ),
     );
   }

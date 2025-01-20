@@ -21,25 +21,27 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class PageCarrousel extends HookConsumerWidget {
+class PageCarrousel extends ConsumerWidget {
   const PageCarrousel({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final PageController controller = PageController(initialPage: 0);
-    final width = MediaQuery.sizeOf(context).width;
+    final ScrollController scrollController = ScrollController(
+      initialScrollOffset: 0.0,
+    );
+
     final height = MediaQuery.of(context).size.height - 50;
 
-    controller.addListener(() {
-      if (controller.page == 0) {
+    scrollController.addListener(() {
+      if (scrollController.offset == 0) {
         ref.read(appBarProvider.notifier).state = AppBarScroll(0, 0.4);
       }
-      if (controller.page == 1) {
+      if (scrollController.offset > 0) {
         ref.read(appBarProvider.notifier).state = AppBarScroll(0.2, 0.4);
       }
-      if (controller.page == 2) {
+      if (scrollController.offset > height) {
         ref.read(appBarProvider.notifier).state = AppBarScroll(0.4, 0.6);
       }
-      if (controller.page == 3) {
+      if (scrollController.offset > height * 2) {
         ref.read(appBarProvider.notifier).state = AppBarScroll(0.6, 0.8);
       }
     });
@@ -50,16 +52,14 @@ class PageCarrousel extends HookConsumerWidget {
       PageFinniu(),
       PageSilver(),
     ];
-    return SizedBox(
-      width: width,
-      height: height,
-      child: PageView.builder(
-          scrollDirection: Axis.vertical,
-          controller: controller,
-          itemCount: pages.length,
-          itemBuilder: (context, index) {
-            return pages[index];
-          }),
+
+    return Stack(
+      children: [
+        SingleChildScrollView(
+          controller: scrollController,
+          child: Column(children: pages),
+        ),
+      ],
     );
   }
 }
