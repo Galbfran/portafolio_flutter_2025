@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portafolio_flutter/screens/pages/page_init.dart';
+import 'package:portafolio_flutter/widgets/section_sub_title.dart';
+import 'package:portafolio_flutter/widgets/section_title.dart';
 
 class PageAbout extends StatelessWidget {
   const PageAbout({
