@@ -10,47 +10,57 @@ class CarrouselTec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> listWidget = [
+      TectItem(
+        key: Key('dart'),
+        name: 'Dart',
+        svg: 'assets/svg/dart.svg',
+      ),
+      TectItem(
+        key: Key('flutter'),
+        name: 'Flutter',
+        svg: 'assets/svg/flutter.svg',
+      ),
+      TectItem(
+        key: Key('typescript'),
+        name: 'TypeScript',
+        svg: 'assets/svg/typescript.svg',
+      ),
+      TectItem(
+        key: Key('react'),
+        name: 'React',
+        svg: 'assets/svg/react.svg',
+      ),
+      TectItem(
+        key: Key('nodejs'),
+        name: 'Node.js',
+        svg: 'assets/svg/nodejs.svg',
+      ),
+      TectItem(
+        key: Key('github'),
+        name: 'Git Hub',
+        svg: 'assets/svg/github-light.svg',
+      ),
+      TectItem(
+        key: Key('auth0'),
+        name: 'Auth0',
+        svg: 'assets/svg/auth0.svg',
+      ),
+      TectItem(
+        key: Key('jwt'),
+        name: 'JWT',
+        svg: 'assets/svg/jwt.svg',
+      ),
+    ];
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         width: 700,
         height: 40,
         child: CarouselSlider(
-          items: [
-            TectItem(
-              name: 'Dart',
-              svg: 'assets/svg/dart.svg',
-            ),
-            TectItem(
-              name: 'Flutter',
-              svg: 'assets/svg/flutter.svg',
-            ),
-            TectItem(
-              name: 'TypeScript',
-              svg: 'assets/svg/typescript.svg',
-            ),
-            TectItem(
-              name: 'React',
-              svg: 'assets/svg/react.svg',
-            ),
-            TectItem(
-              name: 'Node.js',
-              svg: 'assets/svg/nodejs.svg',
-            ),
-            TectItem(
-              name: 'Git Hub',
-              svg: 'assets/svg/github-light.svg',
-            ),
-            TectItem(
-              name: 'Auth0',
-              svg: 'assets/svg/auth0.svg',
-            ),
-            TectItem(
-              name: 'JWT',
-              svg: 'assets/svg/jwt.svg',
-            ),
-          ],
+          items: listWidget,
           options: CarouselOptions(
+            clipBehavior: Clip.none,
             autoPlay: true,
             enlargeCenterPage: false,
             viewportFraction: 0.25,
@@ -62,7 +72,11 @@ class CarrouselTec extends StatelessWidget {
 }
 
 class TectItem extends StatelessWidget {
-  const TectItem({super.key, required this.name, required this.svg});
+  const TectItem({
+    super.key,
+    required this.name,
+    required this.svg,
+  });
   final String name;
   final String svg;
   @override
@@ -73,6 +87,14 @@ class TectItem extends StatelessWidget {
       width: 150,
       height: 30,
       decoration: BoxDecoration(
+        color: primaryColor,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 5,
+            offset: Offset(0, 5),
+          )
+        ],
         border: Border.all(color: secundaryColor),
         borderRadius: BorderRadius.circular(20),
       ),
@@ -112,7 +134,6 @@ class CarouselTecnologi extends StatelessWidget {
         height: 100,
         child: CarouselSlider(
           items: [
-            // Puedes poner cualquier widget aquí
             ItemCarrousel(
               name: 'react',
               icon: Icon(Icons.android),
@@ -130,6 +151,7 @@ class CarouselTecnologi extends StatelessWidget {
             autoPlay: true,
             enlargeCenterPage: false,
             viewportFraction: 0.2,
+            clipBehavior: Clip.none,
           ),
         ),
       ),
