@@ -17,7 +17,7 @@ class SectionWidget extends StatelessWidget {
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: primaryColor,
+        color: const Color.fromARGB(255, 226, 230, 171),
         boxShadow: const [
           BoxShadow(
             color: Colors.black26,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio_flutter/widgets/carrousel_images.dart';
+import 'package:portafolio_flutter/widgets/carrousel_tec.dart';
 import 'package:portafolio_flutter/widgets/image_dialog.dart';
 import 'package:portafolio_flutter/widgets/image_widget.dart';
 import 'package:portafolio_flutter/widgets/section_container.dart';
@@ -47,7 +48,8 @@ class _FirstSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String text = '';
+    const String text =
+        '''En este proyecto se me asignó la responsabilidad de maquetar e integrar las nuevas pantallas en coordinación con el equipo de diseño.''';
     return SectionWidget(
       child: Column(
         spacing: 10,
@@ -55,8 +57,23 @@ class _FirstSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TitleAnimated(text: "Finniu App", textAlign: TextAlign.start),
-          SubTitleAnimated(
-              text: "Desarrollo Android y Ios", textAlign: TextAlign.start),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TectItem(
+                key: Key('apple'),
+                name: 'Ios',
+                svg: 'assets/svg/apple_light.svg',
+              ),
+              const SizedBox(width: 5),
+              TectItem(
+                key: Key('movil'),
+                name: 'Android',
+                svg: 'assets/svg/android-icon.svg',
+              ),
+            ],
+          ),
           TextAnimated(text: text, textAlign: TextAlign.start),
         ],
       ),

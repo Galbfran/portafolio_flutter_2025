@@ -6,7 +6,7 @@ const Color buttonColor = Color.fromARGB(255, 173, 180, 107);
 const Color fourColor = Color(0xff61A375);
 
 final ThemeData theme = ThemeData(
-  scaffoldBackgroundColor: Colors.amber[200],
+  scaffoldBackgroundColor: Colors.amber[600],
   colorScheme: ColorScheme(
     primary: primaryColor,
     secondary: secundaryColor,

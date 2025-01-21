@@ -47,7 +47,7 @@ class _FirstSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const String text =
-        '''Como desarrollador Full Stack, combino creatividad y experiencia técnica para construir aplicaciones web modernas y escalables. Mi enfoque se centra en crear soluciones que no solo funcionen perfectamente, sino que también ofrezcan una experiencia de usuario excepcional.\nDestaco mi capacidad para utilizar Flutter en el desarrollo móvil, así como la implementación de bibliotecas como Auth0 para la gestiónde autenticación y las APIs de Google Maps, entre otras.''';
+        '''Como desarrollador Full Stack, combino creatividad y experiencia técnica para construir aplicaciones web modernas y escalables. Mi enfoque se centra en crear soluciones que no solo funcionen perfectamente, sino que también ofrezcan una experiencia de usuario excepcional.\nDestaco mi capacidad para utilizar Flutter en el desarrollo móvil, así como la implementación de bibliotecas como Auth0 para la gestión de autenticación y las APIs de Google Maps, entre otras.''';
 
     return SectionWidget(
       child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio_flutter/widgets/carrousel_images.dart';
+import 'package:portafolio_flutter/widgets/carrousel_tec.dart';
 import 'package:portafolio_flutter/widgets/image_dialog.dart';
 import 'package:portafolio_flutter/widgets/image_widget.dart';
 import 'package:portafolio_flutter/widgets/section_container.dart';
@@ -31,8 +32,8 @@ class PageSilver extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 10,
               children: [
-                _FirstSection(),
                 _SecondSection(),
+                _FirstSection(),
               ],
             ),
     );
@@ -72,7 +73,8 @@ class _SecondSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String text = '';
+    const String text =
+        '''En este proyecto se realizó un sistema para la administración de una empresa de Taxis, en la cual se implementó Flutter para crear el front-end y Express.js con Sequelize y PostgreSQL para back-end.''';
     return SectionWidget(
       child: Column(
         spacing: 10,
@@ -80,8 +82,23 @@ class _SecondSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TitleAnimated(text: "Silver App", textAlign: TextAlign.end),
-          SubTitleAnimated(
-              text: "Desarrollo Web y Android", textAlign: TextAlign.end),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TectItem(
+                key: Key('web'),
+                name: 'Web',
+                svg: 'assets/svg/html5.svg',
+              ),
+              const SizedBox(width: 5),
+              TectItem(
+                key: Key('movil'),
+                name: 'Android',
+                svg: 'assets/svg/android-icon.svg',
+              ),
+            ],
+          ),
           TextAnimated(text: text, textAlign: TextAlign.end),
         ],
       ),
