@@ -73,6 +73,15 @@ class _SecondSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> listWidget = [
+      TectItemAbout(name: 'Dart', svg: 'assets/svg/dart.svg'),
+      TectItemAbout(name: 'Flutter', svg: 'assets/svg/flutter.svg'),
+      TectItemAbout(name: 'TypeScript', svg: 'assets/svg/typescript.svg'),
+      TectItemAbout(name: 'Node.js', svg: 'assets/svg/nodejs.svg'),
+      TectItemAbout(name: 'GitHub', svg: 'assets/svg/github-light.svg'),
+      TectItemAbout(name: 'Auth0', svg: 'assets/svg/auth0.svg'),
+      TectItemAbout(name: 'JWT', svg: 'assets/svg/jwt.svg'),
+    ];
     const String text =
         '''En este proyecto se realizó un sistema para la administración de una empresa de Taxis, en la cual se implementó Flutter para crear el front-end y Express.js con Sequelize y PostgreSQL para back-end.''';
     return SectionWidget(
@@ -100,6 +109,13 @@ class _SecondSection extends StatelessWidget {
             ],
           ),
           TextAnimated(text: text, textAlign: TextAlign.end),
+          SubTitleAnimated(
+            text: "Tecnologias",
+            textAlign: TextAlign.start,
+          ),
+          Center(
+            child: CarrouselTecAbout(listWidget: listWidget),
+          )
         ],
       ),
     );

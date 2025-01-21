@@ -123,8 +123,8 @@ class TectItem extends StatelessWidget {
 }
 
 class CarrouselTecAbout extends StatefulWidget {
-  const CarrouselTecAbout({super.key});
-
+  const CarrouselTecAbout({super.key, required this.listWidget});
+  final List<Widget> listWidget;
   @override
   State<CarrouselTecAbout> createState() => _CarrouselTecAboutState();
 }
@@ -132,17 +132,7 @@ class CarrouselTecAbout extends StatefulWidget {
 class _CarrouselTecAboutState extends State<CarrouselTecAbout> {
   late PageController _controller;
   late Timer _timer;
-  final int _interval = 2; // Tiempo en segundos
-  final List<Widget> listWidget = [
-    TectItemAbout(name: 'Dart', svg: 'assets/svg/dart.svg'),
-    TectItemAbout(name: 'Flutter', svg: 'assets/svg/flutter.svg'),
-    TectItemAbout(name: 'TypeScript', svg: 'assets/svg/typescript.svg'),
-    TectItemAbout(name: 'React', svg: 'assets/svg/react.svg'),
-    TectItemAbout(name: 'Node.js', svg: 'assets/svg/nodejs.svg'),
-    TectItemAbout(name: 'GitHub', svg: 'assets/svg/github-light.svg'),
-    TectItemAbout(name: 'Auth0', svg: 'assets/svg/auth0.svg'),
-    TectItemAbout(name: 'JWT', svg: 'assets/svg/jwt.svg'),
-  ];
+  final int _interval = 2;
 
   @override
   void initState() {
@@ -178,8 +168,8 @@ class _CarrouselTecAboutState extends State<CarrouselTecAbout> {
           scrollDirection: Axis.horizontal,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
-            final realIndex = index % listWidget.length;
-            return listWidget[realIndex];
+            final realIndex = index % widget.listWidget.length;
+            return widget.listWidget[realIndex];
           },
         ),
       ),

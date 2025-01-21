@@ -48,6 +48,12 @@ class _FirstSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> listWidget = [
+      TectItemAbout(name: 'Dart', svg: 'assets/svg/dart.svg'),
+      TectItemAbout(name: 'Flutter', svg: 'assets/svg/flutter.svg'),
+      TectItemAbout(name: 'GraphQL', svg: 'assets/svg/graphql.svg'),
+      TectItemAbout(name: 'GitHub', svg: 'assets/svg/github-light.svg'),
+    ];
     const String text =
         '''En este proyecto se me asignó la responsabilidad de maquetar e integrar las nuevas pantallas en coordinación con el equipo de diseño.''';
     return SectionWidget(
@@ -75,6 +81,15 @@ class _FirstSection extends StatelessWidget {
             ],
           ),
           TextAnimated(text: text, textAlign: TextAlign.start),
+          SubTitleAnimated(
+            text: "Tecnologias",
+            textAlign: TextAlign.start,
+          ),
+          Center(
+            child: CarrouselTecAbout(
+              listWidget: listWidget,
+            ),
+          )
         ],
       ),
     );
