@@ -8,15 +8,15 @@ const Color fourColor = Color(0xff61A375);
 final ThemeData theme = ThemeData(
   scaffoldBackgroundColor: Colors.amber[600],
   colorScheme: ColorScheme(
-    primary: primaryColor,
+    primary: secundaryColor,
     secondary: secundaryColor,
     brightness: Brightness.light,
     onPrimary: Colors.black,
     onSecondary: Colors.white,
     onSurface: Colors.black,
     error: Colors.red,
-    onError: Colors.white,
-    surface: Colors.white,
+    onError: Colors.red,
+    surface: Colors.red,
   ),
   fontFamily: 'Franklin',
   typography: Typography.material2021(),
