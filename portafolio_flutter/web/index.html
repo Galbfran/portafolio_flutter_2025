@@ -41,9 +41,6 @@
 </head>
 
 <body>
-  <h1 style="position: absolute; left: -9999px; top: -9999px;">
-    Bienvenido al portafolio de Franco Galbiati, desarrollador experto en Flutter
-  </h1>
   <div id="flutter-loader">
     <style>
       #flutter-loader {
@@ -51,27 +48,45 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-color: #f7f7f7;
-
+        background-color: #61A375;
+        /* Color con opacidad similar */
+        position: relative;
       }
 
-      #flutter-loader .spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid rgba(0, 0, 0, 0.1);
-        border-top-color: #007bff;
+      /* Loader Circular */
+      .spinner {
+        width: 80px;
+        height: 80px;
+        border: 6px solid rgba(0, 0, 0, 0.1);
+        border-top-color: #DBE285;
         border-radius: 50%;
         animation: spin 1s linear infinite;
+        position: absolute;
       }
 
+      /* Animación */
       @keyframes spin {
         to {
           transform: rotate(360deg);
         }
       }
+
+      /* Logo SVG */
+      .logo {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+      }
     </style>
+
+    <!-- Loader Circular -->
     <div class="spinner"></div>
+
+    <!-- Logo SVG -->
+    <img class="logo" src="assets/svg/logo_fran_svg.svg" alt="Logo">
+
   </div>
+
   <script src="flutter_bootstrap.js" async></script>
 </body>
 

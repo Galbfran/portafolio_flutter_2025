@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:portafolio_flutter/const/theme.dart';
 import 'package:portafolio_flutter/provider/app_bar_provider.dart';
+import 'package:portafolio_flutter/provider/loader_provider.dart';
 import 'package:portafolio_flutter/screens/pages/page_about.dart';
+import 'package:portafolio_flutter/screens/pages/page_contact.dart';
 import 'package:portafolio_flutter/screens/pages/page_finniu.dart';
 import 'package:portafolio_flutter/screens/pages/page_init.dart';
 import 'package:portafolio_flutter/screens/pages/page_silver.dart';
@@ -25,6 +29,7 @@ class PageCarrousel extends ConsumerWidget {
   const PageCarrousel({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loader = ref.watch(loaderProvider);
     final ScrollController scrollController = ScrollController(
       initialScrollOffset: 0.0,
     );
@@ -51,6 +56,7 @@ class PageCarrousel extends ConsumerWidget {
       PageAbout(),
       PageFinniu(),
       PageSilver(),
+      PageContact(),
     ];
 
     return Stack(
@@ -59,6 +65,29 @@ class PageCarrousel extends ConsumerWidget {
           controller: scrollController,
           child: Column(children: pages),
         ),
+        if (loader)
+          Container(
+            width: MediaQuery.sizeOf(context).width,
+            height: height,
+            color: secundaryColor.withAlpha(100),
+            child: Center(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: CircularProgressIndicator(),
+                  ),
+                  SvgPicture.asset(
+                    'assets/svg/logo_fran_svg.svg',
+                    width: 100,
+                    height: 100,
+                  )
+                ],
+              ),
+            ),
+          ),
       ],
     );
   }

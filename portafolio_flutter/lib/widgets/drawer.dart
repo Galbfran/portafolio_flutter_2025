@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portafolio_flutter/const/clipboard_copy.dart';
 import 'package:portafolio_flutter/const/laucher_url.dart';
 import 'package:portafolio_flutter/const/theme.dart';
 import 'package:portafolio_flutter/provider/app_bar_provider.dart';
@@ -52,22 +53,48 @@ class DrawerApp extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                'Desarrollador Web / Movil',
+                'Desarrollador Full Stack',
                 style: TextStyle(fontSize: 15),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                '11-6227-1014',
-                style: TextStyle(fontSize: 15),
+              child: Row(
+                children: [
+                  Text(
+                    '11-6227-1014',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(width: 10),
+                  IconButton(
+                    onPressed: () =>
+                        clipBoardCopy(text: '11-6227-1014', context: context),
+                    icon: const Icon(
+                      Icons.copy,
+                      size: 15,
+                    ),
+                  )
+                ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                'francogalbiati984@gmail.com',
-                style: TextStyle(fontSize: 15),
+              child: Row(
+                children: [
+                  Text(
+                    'francogalbiati984@gmail.com',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(width: 10),
+                  IconButton(
+                    onPressed: () => clipBoardCopy(
+                        text: 'francogalbiati984@gmail.com', context: context),
+                    icon: const Icon(
+                      Icons.copy,
+                      size: 15,
+                    ),
+                  )
+                ],
               ),
             ),
             Divider(
