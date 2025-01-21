@@ -48,11 +48,9 @@ class _FirstSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<String> imagesList = [
-      'assets/finniu/finniu_init.png',
-      'assets/finniu/finniu_cronograma.png',
-      'assets/finniu/finniu_my_invest.png',
-      'assets/finniu/finniu_pre_invest.png',
-      'assets/finniu/finniu_reinvest.png',
+      'assets/silver/silver_init.jpeg',
+      'assets/silver/silver_home.jpeg',
+      'assets/silver/silver_form.jpeg',
     ];
     final List<Widget> listImages = imagesList
         .map((url) => HoverableImage(
