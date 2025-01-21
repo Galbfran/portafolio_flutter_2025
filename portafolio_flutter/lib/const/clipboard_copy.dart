@@ -7,7 +7,7 @@ void clipBoardCopy({required String text, required BuildContext context}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: secundaryColor,
+      backgroundColor: primaryColor,
       content:
           Text('Copiado: $text', style: const TextStyle(color: Colors.black)),
       duration: const Duration(seconds: 2),
