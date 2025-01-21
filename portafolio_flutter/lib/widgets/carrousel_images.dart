@@ -10,10 +10,42 @@ class CarrouselImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      allowImplicitScrolling: true,
-      itemCount: images.length,
-      itemBuilder: (context, index) => images[index],
+    final PageController pageController = PageController(initialPage: 0);
+    return Stack(
+      children: [
+        PageView.builder(
+          controller: pageController,
+          allowImplicitScrolling: true,
+          itemCount: images.length,
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: images[index],
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              onPressed: () {
+                pageController.previousPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
+              },
+              icon: Center(child: const Icon(Icons.arrow_back_ios)),
+            ),
+            IconButton(
+              onPressed: () {
+                pageController.nextPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
+              },
+              icon: Center(child: const Icon(Icons.arrow_forward_ios)),
+            )
+          ],
+        )
+      ],
     );
   }
 }

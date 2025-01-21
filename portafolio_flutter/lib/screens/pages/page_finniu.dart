@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio_flutter/widgets/carrousel_images.dart';
+import 'package:portafolio_flutter/widgets/image_dialog.dart';
+import 'package:portafolio_flutter/widgets/image_widget.dart';
 import 'package:portafolio_flutter/widgets/section_container.dart';
 import 'package:portafolio_flutter/widgets/text_animated.dart';
 
@@ -70,24 +72,17 @@ class _SecondSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> listImages = [
-      Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/logo_fran_png.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/logo_fran_png.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-      )
+    const List<String> imagesList = [
+      'assets/finniu/finniu_init.png',
+      'assets/finniu/finniu_cronograma.png',
+      'assets/finniu/finniu_my_invest.png',
+      'assets/finniu/finniu_pre_invest.png',
+      'assets/finniu/finniu_reinvest.png',
     ];
+    final List<Widget> listImages = imagesList
+        .map((url) => HoverableImage(
+            url: url, onTap: () => showImage(context: context, url: url)))
+        .toList();
     return SectionWidget(
       child: CarrouselImages(
         images: listImages,
