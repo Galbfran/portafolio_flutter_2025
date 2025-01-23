@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portafolio_flutter/const/theme.dart';
@@ -152,22 +153,26 @@ class _PageExpState extends State<PageExp> {
               children: [
                 autoScrool
                     ? SizedBox()
-                    : ElevatedButton.icon(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              Colors.green.withValues(
-                            alpha: 0.5,
-                          )),
+                    : FadeIn(
+                        child: ElevatedButton.icon(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                Colors.green.withValues(
+                              alpha: 0.5,
+                            )),
+                          ),
+                          onPressed: () {
+                            _pageController.animateToPage(
+                              0,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                            );
+                          },
+                          icon: const Icon(Icons.arrow_back_ios,
+                              color: Colors.white),
+                          label: const Text("Silver",
+                              style: TextStyle(color: Colors.white)),
                         ),
-                        onPressed: () {
-                          _pageController.animateToPage(
-                            0,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_back_ios),
-                        label: const Text("Silver"),
                       ),
                 Switch(
                     activeColor: Colors.green,
@@ -189,25 +194,29 @@ class _PageExpState extends State<PageExp> {
                     }),
                 autoScrool
                     ? SizedBox()
-                    : ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              Colors.green.withValues(alpha: 0.5)),
-                        ),
-                        onPressed: () {
-                          _pageController.animateToPage(
-                            1,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,
-                          );
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Text("Finniu"),
-                            SizedBox(width: 8),
-                            Icon(Icons.arrow_forward_ios),
-                          ],
+                    : FadeIn(
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                Colors.green.withValues(alpha: 0.5)),
+                          ),
+                          onPressed: () {
+                            _pageController.animateToPage(
+                              1,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                            );
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Text("Finniu",
+                                  style: TextStyle(color: Colors.white)),
+                              SizedBox(width: 8),
+                              Icon(Icons.arrow_forward_ios,
+                                  color: Colors.white),
+                            ],
+                          ),
                         ),
                       ),
               ],
