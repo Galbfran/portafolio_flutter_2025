@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -44,22 +46,65 @@ class AppBarHome extends ConsumerWidget implements PreferredSizeWidget {
         ),
       ),
       actions: actionsMovil,
-      leading: GestureDetector(
-        onTap: () => Scaffold.of(context).openDrawer(),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: SvgPicture.asset(
-            'assets/svg/logo_fran_svg.svg',
-            width: 25,
-            height: 25,
-          ),
-        ),
-      ),
+      leading: ExpandingLogo(),
     );
   }
 
   @override
   Size get preferredSize => const Size.fromHeight(50);
+}
+
+class ExpandingLogo extends StatefulWidget {
+  const ExpandingLogo({super.key});
+
+  @override
+  ExpandingLogoState createState() => ExpandingLogoState();
+}
+
+class ExpandingLogoState extends State<ExpandingLogo> {
+  bool isExpanded = false;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoExpansion();
+  }
+
+  void _startAutoExpansion() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        isExpanded = !isExpanded;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      onPressed: () => Scaffold.of(context).openDrawer(),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: TweenAnimationBuilder<double>(
+          duration: Duration(milliseconds: 500),
+          tween: Tween<double>(begin: 25, end: isExpanded ? 50 : 25),
+          builder: (context, size, child) {
+            return SvgPicture.asset(
+              'assets/svg/logo_fran_svg.svg',
+              width: size,
+              height: size,
+            );
+          },
+        ),
+      ),
+    );
+  }
 }
 
 class Title extends StatelessWidget {
