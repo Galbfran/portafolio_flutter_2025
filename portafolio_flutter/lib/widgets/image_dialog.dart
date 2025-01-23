@@ -8,16 +8,15 @@ class ImageZoomDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Colors.transparent, // Para que el fondo sea oscuro
+      backgroundColor: Colors.transparent,
       child: ClipRRect(
-        borderRadius:
-            BorderRadius.circular(10), // Bordes redondeados opcionales
+        borderRadius: BorderRadius.circular(10),
         child: Stack(
           children: [
             InteractiveViewer(
               boundaryMargin: EdgeInsets.all(20),
               minScale: 1.0,
-              maxScale: 4.0, // Permite hacer zoom hasta 4x
+              maxScale: 4.0,
               child: Image.asset(url, fit: BoxFit.contain),
             ),
             Positioned(
@@ -35,7 +34,6 @@ class ImageZoomDialog extends StatelessWidget {
   }
 }
 
-// Función para mostrar el diálogo con la imagen en zoom
 void showImage({required BuildContext context, required String url}) {
   showDialog(
     context: context,

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,6 +11,7 @@ import 'package:portafolio_flutter/screens/pages/page_init.dart';
 import 'package:portafolio_flutter/screens/pages/page_silver.dart';
 import 'package:portafolio_flutter/widgets/app_bar.dart';
 import 'package:portafolio_flutter/widgets/drawer.dart';
+import 'package:portafolio_flutter/widgets/floating_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       drawer: DrawerApp(),
       appBar: AppBarHome(),
+      floatingActionButton: FloatingButton(),
       body: PageCarrousel(),
     );
   }
@@ -57,14 +58,15 @@ class PageCarrousel extends ConsumerWidget {
       PageAbout(),
       PageFinniu(),
       PageSilver(),
-      if (kIsWeb) PageContact(),
+      PageContact(),
     ];
 
     return Stack(
       children: [
-        SingleChildScrollView(
+        ListView.builder(
           controller: scrollController,
-          child: Column(children: pages),
+          itemCount: pages.length,
+          itemBuilder: (context, index) => pages[index],
         ),
         if (loader)
           Container(

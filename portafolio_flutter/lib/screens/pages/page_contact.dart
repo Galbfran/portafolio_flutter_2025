@@ -1,11 +1,13 @@
-import 'package:flutter/foundation.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:portafolio_flutter/const/clipboard_copy.dart';
 import 'package:portafolio_flutter/const/theme.dart';
+import 'package:portafolio_flutter/dio/send_email.dart';
 import 'package:portafolio_flutter/provider/loader_provider.dart';
 import 'package:portafolio_flutter/widgets/section_container.dart';
+import 'package:portafolio_flutter/widgets/snack_bar.dart';
 import 'package:portafolio_flutter/widgets/text_animated.dart';
 
 class PageContact extends StatelessWidget {
@@ -54,6 +56,7 @@ class _FirstSection extends StatelessWidget {
         '''Estoy interesado en oportunidades freelance y proyectos desafiantes. Si tienes una propuesta o simplemente quieres saludar, ¡escríbeme!''';
     return SectionWidget(
       child: Column(
+        spacing: 10,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -123,33 +126,25 @@ class _SecondSectionState extends ConsumerState<_SecondSection> {
   @override
   Widget build(BuildContext context) {
     Future<void> sendEmail() async {
-      if (kIsWeb) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("No se puede enviar correos en Flutter Web.")),
-        );
-        return;
-      }
-
-      final Email email = Email(
-        recipients: ['francogalbiati984@gmail.com'],
-        subject: _nameController.text,
-        body: _messageController.text,
-        isHTML: false,
-      );
       ref.read(loaderProvider.notifier).state = true;
       try {
-        await FlutterEmailSender.send(email);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Correo enviado exitosamente.")),
+        final result = await postEmail(
+          name: _nameController.text,
+          email: _emailController.text,
+          description: _messageController.text,
         );
+        if (!result) {
+          snackBarShow(text: "Error al enviar el correo.", context: context);
+          return;
+        }
+        snackBarShow(text: "Correo enviado exitosamente.", context: context);
         _emailController.clear();
         _nameController.clear();
         _messageController.clear();
         ref.read(loaderProvider.notifier).state = false;
       } catch (error) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error al enviar el correo: $error")),
-        );
+        debugPrint(error.toString());
+        snackBarShow(text: "Error al enviar el correo.", context: context);
         ref.read(loaderProvider.notifier).state = false;
       }
     }
@@ -162,11 +157,13 @@ class _SecondSectionState extends ConsumerState<_SecondSection> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              TitleAnimated(
+                  text: "Envia un mensaje", textAlign: TextAlign.start),
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Descripcion',
+                  labelText: 'Nombre',
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -200,7 +197,7 @@ class _SecondSectionState extends ConsumerState<_SecondSection> {
                   border: OutlineInputBorder(),
                   labelText: 'Mensaje',
                 ),
-                maxLines: 5,
+                maxLines: 3,
                 keyboardType: TextInputType.multiline,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -221,7 +218,7 @@ class _SecondSectionState extends ConsumerState<_SecondSection> {
                   child: const Text("Enviar",
                       style: TextStyle(fontSize: 30, color: Colors.white)),
                 ),
-              )
+              ),
             ],
           )),
     );
