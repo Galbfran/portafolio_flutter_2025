@@ -149,7 +149,7 @@ class DrawerApp extends ConsumerWidget {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      'Linkedin',
+                      'GitHub',
                       style: TextStyle(fontSize: 15, color: Color(0xff000000)),
                     )
                   ],
